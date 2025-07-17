@@ -25,8 +25,8 @@ class AppSettingsComponent {
             .addLabeledComponent(JBLabel(message("settingsClassName")), className, 1, false)
             .addLabeledComponent(JBLabel(message("settingsSplitPattern")), filenameSplitPattern, 1, false)
             .addComponent(autoDetection, 1)
-            .addComponent(namedWithParent, 1)
-            .addComponent(leadingWithPackageName, 1)
+//            .addComponent(namedWithParent, 1)
+//            .addComponent(leadingWithPackageName, 1)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
