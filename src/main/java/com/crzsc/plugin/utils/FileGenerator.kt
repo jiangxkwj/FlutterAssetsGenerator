@@ -140,13 +140,13 @@ class FileGenerator(private val project: Project) {
         namedWithParent: Boolean,
         map: MutableMap<String, String>
     ) {
-        var key = it.nameWithoutExtension.replace(".", "_").toLowCamelCase(regex)///fileName style
+        var key = it.nameWithoutExtension//it.nameWithoutExtension.replace(".", "_").toLowCamelCase(regex)///fileName style
         val value = it.path.removePrefix("$basePath/")
         if (namedWithParent) {
             it.parent?.let { parent ->
-                key = "${parent.name.toLowCamelCase(regex)}${key.upperCaseFirst()}"
+                key = "${parent.parent.name.toLowCamelCase(regex)}_${parent.name.toLowCamelCase(regex)}_${key.lowercase()}"
                 if (map.containsKey(key)) {
-                    key = "${parent.parent.name.toLowCamelCase(regex)}${key.upperCaseFirst()}"
+                    key = "${parent.parent.name.toLowCamelCase(regex)}_${parent.name.toLowCamelCase(regex)}_${key.lowercase()}(1)"
                 }
                 map[key] = value
             }
