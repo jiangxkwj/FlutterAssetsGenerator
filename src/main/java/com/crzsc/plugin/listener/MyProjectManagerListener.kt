@@ -2,6 +2,7 @@ package com.crzsc.plugin.listener
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
+import com.intellij.openapi.vfs.VirtualFileManager
 import com.intellij.psi.PsiManager
 
 class MyProjectManagerListener : ProjectManagerListener {
@@ -16,6 +17,9 @@ class MyProjectManagerListener : ProjectManagerListener {
         eventsMap[project] = treeListener
         PsiManager.getInstance(project).addPsiTreeChangeListener(
                 treeListener)
+        project.messageBus
+            .connect()
+            .subscribe(VirtualFileManager.VFS_CHANGES, Image3xListener(project))
     }
 
     override fun projectClosing(project: Project) {

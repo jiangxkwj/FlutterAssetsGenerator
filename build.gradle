@@ -32,6 +32,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation 'org.sejda.imageio:webp-imageio:0.1.6'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
