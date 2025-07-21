@@ -128,7 +128,7 @@ object FileHelperNew {
 
     fun isWithLeadingWithPackageName(config: ModulePubSpecConfig): Boolean {
         return readSetting(config, Constants.KEY_LEADING_WITH_PACKAGE_NAME) as Boolean?
-                ?: PluginSetting.instance.leadingWithPackageName
+            ?: PluginSetting.instance.leadingWithPackageName
     }
 
     /**
@@ -160,13 +160,21 @@ object FileHelperNew {
      */
     fun getPathIgnore(config: ModulePubSpecConfig): List<String> {
         return try {
-            val paths =
-                readSetting(config, Constants.PATH_IGNORE) as List<String>?
-                    ?: emptyList()
+            val paths = readSetting(config, Constants.PATH_IGNORE) as List<String>? ?: listOf(
+                "assets/audio",
+                "assets/fonts",
+                "assets/json",
+                "assets/video"
+            )
             paths
         } catch (e: Exception) {
             e.printStackTrace()
-            emptyList()
+            listOf(
+                "assets/audio",
+                "assets/fonts",
+                "assets/json",
+                "assets/video"
+            )
         }
     }
 
@@ -230,8 +238,8 @@ data class ModulePubSpecConfig(
 ) {
     fun getLeadingWithPackageNameIfChecked(): String {
         if (FileHelperNew.isWithLeadingWithPackageName(this)) {
-            return  "packages/${map["name"]}/"
+            return "packages/${map["name"]}/"
         }
-        return  "";
+        return "";
     }
 }

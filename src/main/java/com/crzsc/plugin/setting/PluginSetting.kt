@@ -13,12 +13,12 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 @State(name = "com.crzsc.plugin.setting.PluginSetting", storages = [Storage("FlutterAssetsGenerator.xml")])
 class PluginSetting : PersistentStateComponent<PluginSetting> {
     var className: String? = Constants.DEFAULT_CLASS_NAME
-    var fileName: String? = Constants.DEFAULT_CLASS_NAME.lowercase()
+    var fileName: String? = Constants.DEFAULT_CLASS_NAME
     var filePath: String? = Constants.DEFAULT_OUTPUT_DIR
     var filenameSplitPattern: String? = Constants.DEFAULT_FILENAME_SPLIT_PATTERN
     var namedWithParent = true
-    var autoDetection = true
-    var leadingWithPackageName = true;
+    var autoDetection = false
+    var leadingWithPackageName = false
     override fun getState(): PluginSetting {
         return this
     }

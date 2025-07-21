@@ -45,8 +45,8 @@ object Constants {
     /**
      * 默认目录
      */
-    const val DEFAULT_OUTPUT_DIR = "generated"
-    const val DEFAULT_CLASS_NAME = "Assets"
+    const val DEFAULT_OUTPUT_DIR = "gen_a"
+    const val DEFAULT_CLASS_NAME = "A"
 
     const val DEFAULT_FILENAME_SPLIT_PATTERN = "[-_]"
 }

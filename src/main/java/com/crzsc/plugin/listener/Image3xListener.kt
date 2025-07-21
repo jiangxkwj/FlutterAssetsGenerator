@@ -5,6 +5,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.newvfs.BulkFileListener
+import com.intellij.openapi.vfs.newvfs.events.VFileContentChangeEvent
 import com.intellij.openapi.vfs.newvfs.events.VFileCopyEvent
 import com.intellij.openapi.vfs.newvfs.events.VFileDeleteEvent
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent
@@ -20,6 +21,7 @@ class Image3xListener(private val project: Project) : BulkFileListener {
             if (event is VFileDeleteEvent) continue
             var file = event.file ?: continue
             if (file.path.split("/").any { it.startsWith(".") }) continue
+            if (event is VFileContentChangeEvent) continue
             file = when (event) {
                 is VFileCopyEvent -> LocalFileSystem.getInstance().refreshAndFindFileByPath(event.path)
                 else -> event.file
@@ -49,6 +51,10 @@ class Image3xListener(private val project: Project) : BulkFileListener {
 
         for ((subdir, scale, outFile) in targets) {
             try {
+                if (outFile.exists()) {
+                    // 不覆盖, 存在就跳过
+                    continue
+                }
                 val width = (image.width * scale).toInt()
                 val height = (image.height * scale).toInt()
 
