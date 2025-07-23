@@ -49,4 +49,10 @@ object Constants {
     const val DEFAULT_CLASS_NAME = "A"
 
     const val DEFAULT_FILENAME_SPLIT_PATTERN = "[-_]"
+    val DEFAULT_PATH_IGNORE = listOf(
+        "assets/audio",
+        "assets/fonts",
+        "assets/json",
+        "assets/video"
+    )
 }

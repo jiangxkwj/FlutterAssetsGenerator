@@ -1,5 +1,6 @@
 package com.crzsc.plugin.setting
 
+import com.crzsc.plugin.utils.Constants
 import com.crzsc.plugin.utils.message
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
@@ -14,6 +15,7 @@ class AppSettingsComponent {
     private val fileName = JBTextField()
     private val className = JBTextField()
     private val filenameSplitPattern = JBTextField()
+    private val pathIgnoreTF = JBTextField(Constants.DEFAULT_PATH_IGNORE.joinToString(","))
     private val autoDetection = JBCheckBox(message("settingsAutoDetection"))
     private val namedWithParent = JBCheckBox(message("settingsNamed"))
     private val leadingWithPackageName = JBCheckBox(message("settingsLeadingWithPackageName"))
@@ -24,6 +26,7 @@ class AppSettingsComponent {
             .addLabeledComponent(JBLabel(message("settingsFileName")), fileName, 1, false)
             .addLabeledComponent(JBLabel(message("settingsClassName")), className, 1, false)
             .addLabeledComponent(JBLabel(message("settingsSplitPattern")), filenameSplitPattern, 1, false)
+            .addLabeledComponent(JBLabel(message("settingsPathIgnore")), pathIgnoreTF, 1, false)
             .addComponent(autoDetection, 1)
 //            .addComponent(namedWithParent, 1)
             .addComponent(leadingWithPackageName, 1)
@@ -65,6 +68,14 @@ class AppSettingsComponent {
 
     fun setFilenameSplitPattern(text: String?) {
         filenameSplitPattern.text = text
+    }
+
+    fun getPathIgnore(): List<String> {
+        return pathIgnoreTF.text.trim().split(",")
+    }
+
+    fun setPathIgnore(pathIgnoreList: List<String>) {
+        pathIgnoreTF.text = pathIgnoreList.joinToString(",")
     }
 
     fun getAutoDetection(): Boolean {

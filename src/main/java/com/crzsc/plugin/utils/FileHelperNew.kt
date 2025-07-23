@@ -108,6 +108,7 @@ object FileHelperNew {
         (config.map[Constants.KEY_CONFIGURATION_MAP] as? Map<*, *>)?.let { configureMap ->
             return configureMap[key]
         }
+
         return null
     }
 
@@ -160,21 +161,11 @@ object FileHelperNew {
      */
     fun getPathIgnore(config: ModulePubSpecConfig): List<String> {
         return try {
-            val paths = readSetting(config, Constants.PATH_IGNORE) as List<String>? ?: listOf(
-                "assets/audio",
-                "assets/fonts",
-                "assets/json",
-                "assets/video"
-            )
+            val paths = readSetting(config, Constants.PATH_IGNORE) as List<String>? ?: PluginSetting.instance.pathIgnore
             paths
         } catch (e: Exception) {
             e.printStackTrace()
-            listOf(
-                "assets/audio",
-                "assets/fonts",
-                "assets/json",
-                "assets/video"
-            )
+            Constants.DEFAULT_PATH_IGNORE
         }
     }
 

@@ -16,6 +16,7 @@ class PluginSetting : PersistentStateComponent<PluginSetting> {
     var fileName: String? = Constants.DEFAULT_CLASS_NAME
     var filePath: String? = Constants.DEFAULT_OUTPUT_DIR
     var filenameSplitPattern: String? = Constants.DEFAULT_FILENAME_SPLIT_PATTERN
+    var pathIgnore: List<String> = Constants.DEFAULT_PATH_IGNORE
     var namedWithParent = true
     var autoDetection = false
     var leadingWithPackageName = false

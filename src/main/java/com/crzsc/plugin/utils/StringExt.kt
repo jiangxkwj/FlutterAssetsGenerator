@@ -12,4 +12,5 @@ val String.isSvgExtension: Boolean
 val String.isImageExtension: Boolean
     get() = endsWith(".png", true)
             || endsWith(".jpg", true)
+            || endsWith(".jpeg", true)
             || endsWith(".webp", true)
