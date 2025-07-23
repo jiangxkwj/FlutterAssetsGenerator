@@ -23,6 +23,7 @@
         <!--        行标记-->
         <codeInsight.lineMarkerProvider language="Dart"
                                         implementationClass="com.crzsc.plugin.provider.AssetsLineMarkerProvider"/>
+        <resourceBundle>messages.MessagesBundle</resourceBundle>
     </extensions>
 
     <applicationListeners>

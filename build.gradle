@@ -79,3 +79,11 @@ patchPluginXml {
 runPluginVerifier {
     ideVersions = properties("pluginVerifierIdeVersions").split(',').toList()
 }
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
